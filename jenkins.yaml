@@ -1,0 +1,8 @@
+  # Default settings shared for all builds (unless directly overridden)
+  common: &common
+    javaVersion:        'oraclejdk8'
+    mavenVersion:       'Maven_3.5.2'
+  default: # this block gets used if no branch-specific one is supplied
+    << : *common # this pulls in everything from 'common'
+
+
