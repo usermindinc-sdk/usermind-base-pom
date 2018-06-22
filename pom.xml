@@ -32,6 +32,9 @@
 
         <jdk-version>1.8</jdk-version>
 
+        <!--Set this to true to skip the docker step (for libraries, for example)-->
+        <docker.skip>false</docker.skip>
+
         <!-- Sonar -->
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
@@ -568,6 +571,7 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <skip>${docker.skip}</skip>
                     <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
                     <repository>usermindinc/${project.artifactId}</repository>
                     <tag>latest</tag>
