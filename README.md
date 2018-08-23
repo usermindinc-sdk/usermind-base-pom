@@ -13,4 +13,7 @@ If you do not want your project to have docker, include this snippet in your plu
         <skip>true</skip>
     </configuration>
 </plugin>
+```
+
+You can also add `-Ddockerfile.skip=true` as an argument to your maven commandline.            
             
