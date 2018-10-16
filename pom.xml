@@ -331,7 +331,6 @@
     </dependencies>
 
     <build>
-    <build>
         <finalName>${project.artifactId}-${build-version}</finalName>
 
         <plugins>
