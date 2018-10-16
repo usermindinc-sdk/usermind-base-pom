@@ -351,37 +351,37 @@
 
             <!--We are using this plugin to parse the version and set some properties with it-->
             <!--http://www.mojohaus.org/build-helper-maven-plugin/-->
-            <!--<plugin>-->
-                <!--<groupId>org.codehaus.mojo</groupId>-->
-                <!--<artifactId>build-helper-maven-plugin</artifactId>-->
-                <!--<version>1.9.1</version>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<id>parse-version</id>-->
-                        <!--<phase>validate</phase>-->
-                        <!--<goals>-->
-                            <!--<goal>parse-version</goal>-->
-                        <!--</goals>-->
-                        <!--<configuration>-->
-                            <!--<propertyPrefix>parsedVersion</propertyPrefix>-->
-                            <!--<versionString>${project.version}</versionString>-->
-                        <!--</configuration>-->
-                    <!--</execution>-->
-                    <!--<execution>-->
-                        <!--<id>generate-timestamp</id>-->
-                        <!--<phase>validate</phase>-->
-                        <!--<goals>-->
-                            <!--<goal>timestamp-property</goal>-->
-                        <!--</goals>-->
-                        <!--<configuration>-->
-                            <!--<name>build-timestamp</name>-->
-                            <!--<pattern>yyyy-MM-dd'T'HH:mm:ssZ</pattern> &lt;!&ndash; ISO 8601 &ndash;&gt;-->
-                            <!--<timeZone>UTC</timeZone>-->
-                            <!--<locale>en,US</locale>-->
-                        <!--</configuration>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-            <!--</plugin>-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.9.1</version>
+                <executions>
+                    <execution>
+                        <id>parse-version</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>parse-version</goal>
+                        </goals>
+                        <configuration>
+                            <propertyPrefix>parsedVersion</propertyPrefix>
+                            <versionString>${project.version}</versionString>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>generate-timestamp</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>timestamp-property</goal>
+                        </goals>
+                        <configuration>
+                            <name>build-timestamp</name>
+                            <pattern>yyyy-MM-dd'T'HH:mm:ssZ</pattern> <!-- ISO 8601 -->
+                            <timeZone>UTC</timeZone>
+                            <locale>en,US</locale>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 
             <!--Tell Maven to use the desired Java version - it defaults to 1.5-->
             <plugin>
