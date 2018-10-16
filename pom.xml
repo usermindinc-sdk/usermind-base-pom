@@ -15,10 +15,10 @@
         <!--Versioning data for the base pom-->
         <!--<base-version>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}</base-version>-->
         <!--<build-number>${parsedVersion.qualifier}</build-number>-->
-        <!--<build-version>${base-version}</build-version>-->
+        <build-version>${base-version}</build-version>
         <!--<finalName>${project.artifactId}-${build-version}-SNAPSHOT</finalName>-->
         <!-- for `mvn -B validate versions:set` to update pom.xml so `mvn deploy` uses our build version -->
-        <!--<newVersion>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${build-number}</newVersion>-->
+        <newVersion>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${build-number}</newVersion>
 
         <!--Version information for the following dependencies-->
         <main-class>com.usermind.usermindsdk.AppMain</main-class>
@@ -58,22 +58,22 @@
             </properties>
         </profile>
 
-        <!--<profile>-->
-            <!--<id>build-server</id>-->
-            <!--<activation>-->
-                <!--<property>-->
-                    <!--<name>env.BUILD_NUMBER</name>-->
-                <!--</property>-->
-            <!--</activation>-->
-            <!--<properties>-->
-                <!--<build-number>${env.BUILD_NUMBER}</build-number>-->
-                <!--<build-job>${env.BUILD_JOB}</build-job>-->
-                <!--<build-url>${env.BUILD_URL}</build-url>-->
-                <!--<git-commit>${env.GIT_COMMIT}</git-commit>-->
-                <!--<git-branch>${env.GIT_BRANCH}</git-branch>-->
-                <!--<finalName>${project.artifactId}-${build-version}</finalName>-->
-            <!--</properties>-->
-        <!--</profile>-->
+        <profile>
+            <id>build-server</id>
+            <activation>
+                <property>
+                    <name>env.BUILD_NUMBER</name>
+                </property>
+            </activation>
+            <properties>
+                <build-number>${env.BUILD_NUMBER}</build-number>
+                <build-job>${env.BUILD_JOB}</build-job>
+                <build-url>${env.BUILD_URL}</build-url>
+                <git-commit>${env.GIT_COMMIT}</git-commit>
+                <git-branch>${env.GIT_BRANCH}</git-branch>
+                <finalName>${project.artifactId}-${build-version}</finalName>
+            </properties>
+        </profile>
     </profiles>
 
     <dependencies>
