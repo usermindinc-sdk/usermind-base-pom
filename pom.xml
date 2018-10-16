@@ -13,12 +13,12 @@
 
     <properties>
         <!--Versioning data for the base pom-->
-        <base-version>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}</base-version>
-        <build-number>${parsedVersion.qualifier}</build-number>
-        <build-version>${base-version}</build-version>
-        <finalName>${project.artifactId}-${build-version}-SNAPSHOT</finalName>
+        <!--<base-version>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}</base-version>-->
+        <!--<build-number>${parsedVersion.qualifier}</build-number>-->
+        <!--<build-version>${base-version}</build-version>-->
+        <!--<finalName>${project.artifactId}-${build-version}-SNAPSHOT</finalName>-->
         <!-- for `mvn -B validate versions:set` to update pom.xml so `mvn deploy` uses our build version -->
-        <newVersion>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${build-number}</newVersion>
+        <!--<newVersion>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${build-number}</newVersion>-->
 
         <!--Version information for the following dependencies-->
         <main-class>com.usermind.usermindsdk.AppMain</main-class>
@@ -58,22 +58,22 @@
             </properties>
         </profile>
 
-        <profile>
-            <id>build-server</id>
-            <activation>
-                <property>
-                    <name>env.BUILD_NUMBER</name>
-                </property>
-            </activation>
-            <properties>
-                <build-number>${env.BUILD_NUMBER}</build-number>
-                <build-job>${env.BUILD_JOB}</build-job>
-                <build-url>${env.BUILD_URL}</build-url>
-                <git-commit>${env.GIT_COMMIT}</git-commit>
-                <git-branch>${env.GIT_BRANCH}</git-branch>
-                <finalName>${project.artifactId}-${build-version}</finalName>
-            </properties>
-        </profile>
+        <!--<profile>-->
+            <!--<id>build-server</id>-->
+            <!--<activation>-->
+                <!--<property>-->
+                    <!--<name>env.BUILD_NUMBER</name>-->
+                <!--</property>-->
+            <!--</activation>-->
+            <!--<properties>-->
+                <!--<build-number>${env.BUILD_NUMBER}</build-number>-->
+                <!--<build-job>${env.BUILD_JOB}</build-job>-->
+                <!--<build-url>${env.BUILD_URL}</build-url>-->
+                <!--<git-commit>${env.GIT_COMMIT}</git-commit>-->
+                <!--<git-branch>${env.GIT_BRANCH}</git-branch>-->
+                <!--<finalName>${project.artifactId}-${build-version}</finalName>-->
+            <!--</properties>-->
+        <!--</profile>-->
     </profiles>
 
     <dependencies>
@@ -331,6 +331,7 @@
     </dependencies>
 
     <build>
+    <build>
         <finalName>${project.artifactId}-${build-version}</finalName>
 
         <plugins>
@@ -351,37 +352,37 @@
 
             <!--We are using this plugin to parse the version and set some properties with it-->
             <!--http://www.mojohaus.org/build-helper-maven-plugin/-->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <version>1.9.1</version>
-                <executions>
-                    <execution>
-                        <id>parse-version</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>parse-version</goal>
-                        </goals>
-                        <configuration>
-                            <propertyPrefix>parsedVersion</propertyPrefix>
-                            <versionString>${project.version}</versionString>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>generate-timestamp</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>timestamp-property</goal>
-                        </goals>
-                        <configuration>
-                            <name>build-timestamp</name>
-                            <pattern>yyyy-MM-dd'T'HH:mm:ssZ</pattern> <!-- ISO 8601 -->
-                            <timeZone>UTC</timeZone>
-                            <locale>en,US</locale>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.codehaus.mojo</groupId>-->
+                <!--<artifactId>build-helper-maven-plugin</artifactId>-->
+                <!--<version>1.9.1</version>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>parse-version</id>-->
+                        <!--<phase>validate</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>parse-version</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--<propertyPrefix>parsedVersion</propertyPrefix>-->
+                            <!--<versionString>${project.version}</versionString>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
+                    <!--<execution>-->
+                        <!--<id>generate-timestamp</id>-->
+                        <!--<phase>validate</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>timestamp-property</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--<name>build-timestamp</name>-->
+                            <!--<pattern>yyyy-MM-dd'T'HH:mm:ssZ</pattern> &lt;!&ndash; ISO 8601 &ndash;&gt;-->
+                            <!--<timeZone>UTC</timeZone>-->
+                            <!--<locale>en,US</locale>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
 
             <!--Tell Maven to use the desired Java version - it defaults to 1.5-->
             <plugin>
@@ -518,43 +519,43 @@
 
             <!--Lets you execute Java in the same or a different process-->
             <!--http://www.mojohaus.org/exec-maven-plugin/-->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.3.1</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <executable>java</executable>
-                    <arguments>
-                        <argument>-classpath</argument>
-                        <classpath />
-                        <argument>-DAllowOutput="yes"</argument>
-                        <argument>${main-class}</argument>
-                        <argument>server</argument>
-                        <argument>../src/main/resources/config-default.yml</argument>
-                    </arguments>
-                    <workingDirectory>${project.build.directory}</workingDirectory>
-                </configuration>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.codehaus.mojo</groupId>-->
+                <!--<artifactId>exec-maven-plugin</artifactId>-->
+                <!--<version>1.3.1</version>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<goals>-->
+                            <!--<goal>exec</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+                <!--<configuration>-->
+                    <!--<executable>java</executable>-->
+                    <!--<arguments>-->
+                        <!--<argument>-classpath</argument>-->
+                        <!--<classpath />-->
+                        <!--<argument>-DAllowOutput="yes"</argument>-->
+                        <!--<argument>${main-class}</argument>-->
+                        <!--<argument>server</argument>-->
+                        <!--<argument>../src/main/resources/config-default.yml</argument>-->
+                    <!--</arguments>-->
+                    <!--<workingDirectory>${project.build.directory}</workingDirectory>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
 
-            <plugin>
-                <!-- This plugin will set properties values using dependency information -->
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>properties</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--<plugin>-->
+                <!--&lt;!&ndash; This plugin will set properties values using dependency information &ndash;&gt;-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-dependency-plugin</artifactId>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<goals>-->
+                            <!--<goal>properties</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
 
             <plugin>
                 <groupId>com.spotify</groupId>
