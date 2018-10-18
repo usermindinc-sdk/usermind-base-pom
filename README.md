@@ -19,7 +19,21 @@ If you do not want your project to have docker, include this snippet in your plu
     </build>
 ```
 
-You can also add `-Ddockerfile.skip=true` as an argument to your maven commandline.            
+You can also add `-Ddockerfile.skip=true` as an argument to your maven commandline.  
+
+Dockerfile notes!
+Set up your username and password in Maven as described here:          
+https://usermind.atlassian.net/wiki/spaces/EN/pages/26312740/Setting+Up+Maven
+
+There is a docker issue with Spotify where it can't read the OSX Keychain. So if your build fails with a docker login issue even after you log in, check the file ~/.docker/config.json. If it has the line
+```
+"credsStore": "osxkeychain"
+```
+then remove it (and the comma before it so it stays valid JSON) and run 
+```
+docker login
+```
+again. That should recreate the credentials without using the keychain. On reboot docker will restart and put the keychain credentials back in, though, so you'll need to do this again. I just copied config.json to config.worked, and then instead of logging in I just copied the file back over.
   
 For reference, here is a suggested entry for a shaded jar:
 ```
