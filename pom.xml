@@ -4,7 +4,7 @@
 
     <groupId>com.usermind</groupId>
     <artifactId>usermind-base-pom</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.19</version>
     <packaging>pom</packaging>
 
     <organization>
@@ -38,11 +38,26 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <swagger.version>1.5.18</swagger.version>
-
+        <swagger.version>1.5.18</swagger.version>
+        <shade.phase>package</shade.phase>
     </properties>
 
     <profiles>
-        <!-- better to have keep this sonar profile in your maven settings.xml -->
+
+        <!--A profile to let you turn shading off on the maven commandline for faster builds-->
+        <profile>
+            <id>shading</id>
+            <activation>
+                <property>
+                    <name>shader.skip</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <properties>
+            <shade.phase></shade.phase>
+            </properties>
+        </profile>
+
         <profile>
             <id>sonar</id>
             <activation>
@@ -454,6 +469,23 @@
                 </executions>
             </plugin>
 
+            <!--https://mvnrepository.com/artifact/external.atlassian.jgitflow/jgitflow-maven-plugin-->
+            <plugin>
+                <groupId>external.atlassian.jgitflow</groupId>
+                <artifactId>jgitflow-maven-plugin</artifactId>
+                <version>1.0-m5.1</version>
+                <configuration>
+                    <username>${github.username}</username>
+                    <password>${github.password}</password>
+                </configuration>
+            </plugin>
+
+        </plugins>
+
+        <pluginManagement>
+
+        <plugins>
+
             <!--https://mvnrepository.com/artifact/com.spotify/dockerfile-maven-plugin-->
             <plugin>
                 <groupId>com.spotify</groupId>
@@ -480,16 +512,6 @@
                 </configuration>
             </plugin>
 
-            <!--https://mvnrepository.com/artifact/external.atlassian.jgitflow/jgitflow-maven-plugin-->
-            <plugin>
-                <groupId>external.atlassian.jgitflow</groupId>
-                <artifactId>jgitflow-maven-plugin</artifactId>
-                <version>1.0-m5.1</version>
-                <configuration>
-                    <username>${github.username}</username>
-                    <password>${github.password}</password>
-                </configuration>
-            </plugin>
 
             <!--Put all dependencies into a single jar-->
             <!--https://maven.apache.org/plugins/maven-shade-plugin/-->
@@ -513,7 +535,8 @@
                 <executions>
                     <execution>
                         <id>assembly</id>
-                        <phase/>
+                        <!--<phase>package</phase>-->
+                        <phase>${shade.phase}</phase>
                         <goals>
                             <goal>shade</goal>
                         </goals>
@@ -550,9 +573,10 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
+        </pluginManagement>
     </build>
+
 
     <distributionManagement>
         <repository>

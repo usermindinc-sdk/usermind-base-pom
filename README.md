@@ -3,23 +3,27 @@ Base pom for Usermind
 
 This brings in many standard libraries and thus lets us have a standard version for them. It also includes Spring, Dropwizard, and Docker meaning it is easy to set those up and will give you everything you need for our CI/CD solution out of the box.
 
-If you do not want your project to have docker, include this snippet in your plugins section:
+Docker and jar shading are configured but turned off unless you specifically turn them on - otherwise they run in libraries and other places where they are not desired. 
 
+To turn on Docker or shading, put the appropriate plugin section below in your project pom:
 ```          
     <build>
         <plugins>
-            <plugin>
+           <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>dockerfile-maven-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
 ```
 
-You can also add `-Ddockerfile.skip=true` as an argument to your maven commandline.  
+If you turn on docker, note that you can also add `-Ddockerfile.skip=true` as an argument to your maven commandline to skip that step and make a test build faster. Similarly, `-Dshader.skip=true` will skip shading, again just making a test build faster.
+  
 
 Dockerfile notes!
 Set up your username and password in Maven as described here:          
