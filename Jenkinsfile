@@ -3,13 +3,7 @@
 node {
     try {
 
-        stage('checkout') {
-            deleteDir()
-            checkout scm
-            changeLogMessage = util.changeLogs()
-        }
-
-        stage('Configure environment') {
+        stage('Set Slack Destination') {
             // For you/your team to do: Choose a slack channel. For example, Skylab has a slack channel just for builds. If you just want the messages
             // to go to the author of the latest git commit, leave this as is (and delete the if block).
             // Remember that you need '@' (for direct messages) or '#' (for channels) on the front of the slackMessageDestination value.
@@ -19,7 +13,15 @@ node {
                 // Change out for the appropriate team channel
                 slackTeamMessageDestination = "#integration-build"
             }
+        }
 
+        stage('checkout') {
+            deleteDir()
+            checkout scm
+            changeLogMessage = util.changeLogs()
+        }
+
+        stage('Configure environment') {
             build_config = util.loadJenkinsConfiguration("jenkins.yaml")
             util.useJDKVersion(build_config.javaVersion)
             util.useMavenVersion(build_config.mavenVersion)
