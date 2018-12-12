@@ -582,7 +582,7 @@
        <repository>
             <id>sputnik-nexus</id>
             <name>Releases</name>
-            <url>http://sputnik-nexus.internal.usermind.com:8081/nexus/content/repositories/releases/</url>
+            <url>http://sputnik-nexus.internal.usermind.com:8081/nexus/content/groups/public/</url>
         </repository>
         <snapshotRepository>
             <id>deployment</id>
