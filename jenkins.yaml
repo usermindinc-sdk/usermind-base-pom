@@ -5,4 +5,11 @@
   default: # this block gets used if no branch-specific one is supplied
     << : *common # this pulls in everything from 'common'
 
+  develop: # Configuration for develop branch
+    << : *common # this pulls in everything from 'common'
+    deploymentSlackRoom: staging
+
+  master:  # Configuration for master branch
+    << : *common # this pulls in everything from 'common'
+    deploymentSlackRoom: deploy-prod
 
