@@ -52,8 +52,6 @@ node {
 
     catch (buildError) {
         currentBuild.result = 'FAILURE'
-        util.sendSlackMessage(slackMessageDestination, ":jenkins_rage: ${pom.artifactId} ${pom.version} build FAILED: ${env.BUILD_URL}consoleFull", "danger")
-        util.sendFailureEmail(util.commitAuthorEmail())
         throw buildError
     }
 
