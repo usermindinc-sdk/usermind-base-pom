@@ -586,12 +586,11 @@
 
     </build>
 
-
     <distributionManagement>
         <repository>
-            <id>repo.usermind.com</id>
+            <id>deployment</id>
             <name>Releases</name>
-            <url>s3://repo.teamed.io/release</url>
+            <url>http://nexus.internal.usermind.com:8081/nexus/content/repositories/releases/</url>
         </repository>
         <snapshotRepository>
             <id>deployment</id>
@@ -599,4 +598,17 @@
             <url>http://nexus.internal.usermind.com:8081/nexus/content/repositories/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
+
+    <!--<distributionManagement>-->
+        <!--<repository>-->
+            <!--<id>repo.usermind.com</id>-->
+            <!--<name>Releases</name>-->
+            <!--<url>s3://repo.teamed.io/release</url>-->
+        <!--</repository>-->
+        <!--<snapshotRepository>-->
+            <!--<id>deployment</id>-->
+            <!--<name>Snapshots</name>-->
+            <!--<url>http://nexus.internal.usermind.com:8081/nexus/content/repositories/snapshots</url>-->
+        <!--</snapshotRepository>-->
+    <!--</distributionManagement>-->
 </project>  
