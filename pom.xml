@@ -4,7 +4,7 @@
 
     <groupId>com.usermind</groupId>
     <artifactId>usermind-base-pom</artifactId>
-    <version>1.0.32</version>
+    <version>1.0.33</version>
     <packaging>pom</packaging>
 
     <organization>
@@ -133,6 +133,11 @@
             <dependency>
                 <groupId>com.fasterxml.jackson.module</groupId>
                 <artifactId>jackson-module-jsonSchema</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.dataformat</groupId>
+                <artifactId>jackson-dataformat-xml</artifactId>
                 <version>${jackson.version}</version>
             </dependency>
 
