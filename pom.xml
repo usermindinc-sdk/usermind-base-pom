@@ -4,7 +4,7 @@
 
     <groupId>com.usermind</groupId>
     <artifactId>usermind-base-pom</artifactId>
-    <version>1.0.31</version>
+    <version>1.0.32</version>
     <packaging>pom</packaging>
 
     <organization>
@@ -29,6 +29,7 @@
         <mockito.version>2.27.0</mockito.version>
         <junit-jupiter.version>5.4.2</junit-jupiter.version>
         <junit-platform.version>1.4.2</junit-platform.version>
+        <junit-platform-surefile.version>1.3.2</junit-platform-surefile.version>
 
         <jdk-version>1.8</jdk-version>
 
@@ -458,7 +459,7 @@
                     <dependency>
                         <groupId>org.junit.platform</groupId>
                         <artifactId>junit-platform-surefire-provider</artifactId>
-                        <version>${junit-platform.version}</version>
+                        <version>${junit-platform-surefile.version}</version>
                     </dependency>
                     <dependency>
                         <groupId>org.junit.jupiter</groupId>
