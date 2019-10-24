@@ -4,7 +4,7 @@
 
     <groupId>com.usermind</groupId>
     <artifactId>usermind-base-pom</artifactId>
-    <version>1.0.38</version>
+    <version>1.0.39</version>
     <packaging>pom</packaging>
 
     <organization>
@@ -511,9 +511,9 @@
                 <version>1.0-m5.1</version>
                 <configuration>
                     <!--suppress UnresolvedMavenProperty -->
-                    <username>${github.username}</username>
+                    <username>${githubUsername}</username>
                     <!--suppress UnresolvedMavenProperty -->
-                    <password>${github.password}</password>
+                    <password>${githubPassword}</password>
                 </configuration>
             </plugin>
 
