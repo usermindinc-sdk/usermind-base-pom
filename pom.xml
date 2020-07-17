@@ -4,7 +4,7 @@
 
     <groupId>com.usermind</groupId>
     <artifactId>usermind-base-pom</artifactId>
-    <version>1.0.47</version>
+    <version>1.0.48</version>
     <packaging>pom</packaging>
 
     <organization>
@@ -283,6 +283,12 @@
                 <groupId>io.dropwizard</groupId>
                 <artifactId>dropwizard-json-logging</artifactId>
                 <version>${dropwizard.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.dropwizard</groupId>
+                <artifactId>dropwizard-testing</artifactId>
+                <version>${dropwizard.version}</version>
+                <scope>test</scope>
             </dependency>
 
             <dependency>
