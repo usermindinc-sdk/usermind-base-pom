@@ -4,7 +4,7 @@
 
     <groupId>com.usermind</groupId>
     <artifactId>usermind-base-pom</artifactId>
-    <version>1.0.51</version>
+    <version>1.0.52</version>
     <packaging>pom</packaging>
 
     <organization>
@@ -23,13 +23,13 @@
 
         <!--Version information for the following dependencies-->
         <main-class>com.usermind.usermindsdk.AppMain</main-class>
-        <jackson.version>2.11.3</jackson.version>
-        <org.springframework-version>5.2.9.RELEASE</org.springframework-version>
-        <dropwizard.version>2.0.14</dropwizard.version>
-        <mockito.version>3.5.15</mockito.version>
+        <jackson.version>2.12.0</jackson.version>
+        <org.springframework-version>5.3.2</org.springframework-version>
+        <dropwizard.version>2.0.16</dropwizard.version>
+        <mockito.version>3.6.28</mockito.version>
         <junit-jupiter.version>5.7.0</junit-jupiter.version>
         <junit-platform.version>1.7.0</junit-platform.version>
-        <assertj.version>3.17.2</assertj.version>
+        <assertj.version>3.18.1</assertj.version>
 
         <jdk-version>1.8</jdk-version>
 
