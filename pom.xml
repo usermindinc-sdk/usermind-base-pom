@@ -4,7 +4,7 @@
 
     <groupId>com.usermind</groupId>
     <artifactId>usermind-base-pom</artifactId>
-    <version>1.0.52</version>
+    <version>1.0.53</version>
     <packaging>pom</packaging>
 
     <organization>
@@ -220,6 +220,7 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-test</artifactId>
                 <version>${org.springframework-version}</version>
+                <scope>test</scope>
             </dependency>
 
             <!-- Apache Commons -->
